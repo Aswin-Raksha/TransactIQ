@@ -64,10 +64,9 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">🤖 AI Trade Call Parser</h1>
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">TransactIQ</h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Enter natural language trade calls and get structured JSON output with validation. Powered by OpenAI
-              GPT-4o-mini with strict trading logic.
+              Enter natural language trade calls and get structured JSON output with validation.
             </p>
           </div>
 
