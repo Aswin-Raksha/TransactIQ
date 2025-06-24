@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { toast } from "sonner"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -10,11 +10,36 @@ import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Loader2, CheckCircle, AlertCircle } from "lucide-react"
+import { useRouter } from "next/navigation"
+import { useAuth } from "@/lib/auth-context"
 
 export default function HomePage() {
+  const { user, loading: authLoading } = useAuth()
+  const router = useRouter()
   const [tradeCall, setTradeCall] = useState("")
   const [result, setResult] = useState<any>(null)
   const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    if (!authLoading) {
+      if (user) {
+        router.push("/dashboard")
+      } else {
+        router.push("/login")
+      }
+    }
+  }, [user, authLoading, router])
+
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4" />
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    )
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -64,9 +89,10 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">TransactIQ</h1>
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">🤖 AI Trade Call Parser</h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Enter natural language trade calls and get structured JSON output with validation.
+              Enter natural language trade calls and get structured JSON output with validation. Powered by OpenAI
+              GPT-4o-mini with strict trading logic.
             </p>
           </div>
 

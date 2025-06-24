@@ -1,6 +1,11 @@
 import mongoose from "mongoose"
 
 const TradeCallSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   transType: {
     type: String,
     required: true,

@@ -3,6 +3,7 @@ import OpenAI from "openai"
 import dbConnect from "@/lib/mongodb"
 import TradeCall from "@/models/TradeCall"
 import { validatePayload } from "@/lib/validation"
+import { getUserFromRequest } from "@/lib/auth"
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -10,6 +11,12 @@ const openai = new OpenAI({
 
 export async function POST(request: NextRequest) {
   try {
+    // Check authentication
+    const userPayload = getUserFromRequest(request)
+    if (!userPayload) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    }
+
     const { tradeCall } = await request.json()
 
     if (!tradeCall) {
@@ -130,10 +137,11 @@ User Input: "${tradeCall}"
     const validatedJSON = validatePayload(parsedJSON)
     console.log("Post Validated Results:", validatedJSON)
 
-    // Save to MongoDB
+    // Save to MongoDB with user reference
     const tradeCallDoc = new TradeCall({
       ...validatedJSON,
       originalInput: tradeCall,
+      userId: userPayload.userId,
     })
 
     await tradeCallDoc.save()
