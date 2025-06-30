@@ -4,6 +4,7 @@ import { Inter } from "next/font/google"
 import { Toaster } from "sonner"
 import { AuthProvider } from "@/lib/auth-context"
 import { ThemeProvider } from "@/lib/theme-context"
+import ParticlesBackground from "@/components/particles-background"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -22,8 +23,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider>
-          <AuthProvider>{children}</AuthProvider>
-          <Toaster position="top-right" richColors closeButton duration={4000} />
+          <AuthProvider>
+            <ParticlesBackground />
+            <div className="relative z-10">{children}</div>
+            <Toaster position="top-right" richColors closeButton duration={4000} />
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

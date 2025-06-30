@@ -28,6 +28,7 @@ import {
   Clock,
   Brain,
 } from "lucide-react"
+import Link from "next/link"
 
 export default function DashboardPage() {
   const [tradeCall, setTradeCall] = useState("")
@@ -94,7 +95,7 @@ export default function DashboardPage() {
 
   if (authLoading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-primary" />
           <p className="text-muted-foreground">Loading...</p>
@@ -108,7 +109,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <ProfessionalNavigation onToggleSidebar={() => setSidebarOpen(true)} />
 
       <div className="flex">
@@ -138,7 +139,7 @@ export default function DashboardPage() {
               {/* Left Column - Form */}
               <div className="lg:col-span-2 space-y-6">
                 {/* Main Form */}
-                <Card className="shadow-sm border-border">
+                <Card className="glass shadow-xl border border-white/20">
                   <CardHeader className="pb-4">
                     <div className="flex items-center justify-between">
                       <div>
@@ -167,7 +168,7 @@ export default function DashboardPage() {
                           value={tradeCall}
                           onChange={(e) => setTradeCall(e.target.value)}
                           placeholder="Example: Buy NIFTY 23000 CE monthly @160 target 200/20 SL 120/110"
-                          className="min-h-[120px] resize-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                          className="min-h-[120px] resize-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-white/70 backdrop-blur-sm border-slate-200 focus:border-slate-400 focus:ring-slate-400"
                           disabled={loading}
                         />
                       </div>
@@ -199,7 +200,7 @@ export default function DashboardPage() {
                 {result && (
                   <div className="space-y-6 animate-in">
                     {/* Success Alert */}
-                    <Alert className="border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-950/50">
+                    <Alert className="border-green-200 bg-green-50/90 backdrop-blur-sm">
                       <CheckCircle className="h-4 w-4 text-green-600 dark:text-green-400" />
                       <AlertTitle className="text-green-800 dark:text-green-200">Success!</AlertTitle>
                       <AlertDescription className="text-green-700 dark:text-green-300">
@@ -208,7 +209,7 @@ export default function DashboardPage() {
                     </Alert>
 
                     {/* Parsed JSON Output */}
-                    <Card className="shadow-sm border-border">
+                    <Card className="glass shadow-xl border border-white/20">
                       <CardHeader>
                         <CardTitle className="flex items-center text-foreground">
                           <Target className="mr-2 h-5 w-5 text-primary" />
@@ -216,14 +217,14 @@ export default function DashboardPage() {
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-sm border text-foreground font-mono">
+                        <pre className="bg-slate-50/90 backdrop-blur-sm p-4 rounded-lg overflow-x-auto text-sm border text-foreground font-mono border border-slate-200">
                           {JSON.stringify(result.data, null, 2)}
                         </pre>
                       </CardContent>
                     </Card>
 
                     {/* Field Breakdown */}
-                    <Card className="shadow-sm border-border">
+                    <Card className="glass shadow-xl border border-white/20">
                       <CardHeader>
                         <CardTitle className="flex items-center text-foreground">
                           <Shield className="mr-2 h-5 w-5 text-primary" />
@@ -312,7 +313,7 @@ export default function DashboardPage() {
               {/* Right Column - Examples & Stats */}
               <div className="space-y-6">
                 {/* Examples */}
-                <Card className="shadow-sm border-border">
+                <Card className="glass shadow-xl border border-white/20">
                   <CardHeader>
                     <CardTitle className="flex items-center text-lg text-foreground">
                       <Sparkles className="mr-2 h-5 w-5 text-primary" />
@@ -327,14 +328,14 @@ export default function DashboardPage() {
                         Valid Examples
                       </h4>
                       <div className="space-y-2">
-                        <Card className="bg-green-50 border-green-200 dark:bg-green-950/20 dark:border-green-800">
+                        <Card className="bg-green-50/90 border-green-200 backdrop-blur-sm">
                           <CardContent className="p-3">
                             <code className="text-sm text-green-800 dark:text-green-200">
                               Buy NIFTY 23000 CE monthly @160 target 200/20 SL 120/110
                             </code>
                           </CardContent>
                         </Card>
-                        <Card className="bg-green-50 border-green-200 dark:bg-green-950/20 dark:border-green-800">
+                        <Card className="bg-green-50/90 border-green-200 backdrop-blur-sm">
                           <CardContent className="p-3">
                             <code className="text-sm text-green-800 dark:text-green-200">
                               Sell TATAMOTORS at 1500 with target 240/120 and SL 1480/70
@@ -350,7 +351,7 @@ export default function DashboardPage() {
                         Invalid Examples
                       </h4>
                       <div className="space-y-2">
-                        <Card className="bg-red-50 border-red-200 dark:bg-red-950/20 dark:border-red-800">
+                        <Card className="bg-red-50/90 border-red-200 backdrop-blur-sm">
                           <CardContent className="p-3">
                             <code className="text-sm text-red-800 dark:text-red-200">
                               Buy SBIN @600 target 610/590 SL 595/605
@@ -363,13 +364,20 @@ export default function DashboardPage() {
                   </CardContent>
                 </Card>
 
-                {/* Performance Metrics */}
-                <Card className="shadow-sm border-border">
+                {/* Analytics Preview */}
+                <Card className="glass shadow-xl border border-white/20">
                   <CardHeader>
-                    <CardTitle className="text-lg text-foreground flex items-center">
-                      <BarChart3 className="mr-2 h-5 w-5 text-primary" />
-                      Performance Metrics
-                    </CardTitle>
+                    <div className="flex items-center justify-between">
+                      <CardTitle className="text-lg text-foreground flex items-center">
+                        <BarChart3 className="mr-2 h-5 w-5 text-primary" />
+                        Quick Analytics
+                      </CardTitle>
+                      <Link href="/analytics">
+                        <Button variant="outline" size="sm">
+                          View All
+                        </Button>
+                      </Link>
+                    </div>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
@@ -393,6 +401,14 @@ export default function DashboardPage() {
                           <span className="text-sm text-muted-foreground">Validation Rules</span>
                         </div>
                         <span className="font-semibold text-purple-600">15+</span>
+                      </div>
+                      <div className="pt-2 border-t">
+                        <Link href="/analytics">
+                          <Button variant="ghost" size="sm" className="w-full">
+                            <BarChart3 className="h-4 w-4 mr-2" />
+                            View Detailed Analytics
+                          </Button>
+                        </Link>
                       </div>
                     </div>
                   </CardContent>

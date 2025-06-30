@@ -4,70 +4,70 @@
 
 @layer base {
   :root {
-    /* Black & White Professional Theme */
+    /* Clean White Professional Theme */
     --background: 255 255 255;
-    --foreground: 0 0 0;
+    --foreground: 15 23 42;
     --card: 255 255 255;
-    --card-foreground: 0 0 0;
+    --card-foreground: 15 23 42;
     --popover: 255 255 255;
-    --popover-foreground: 0 0 0;
-    --primary: 0 0 0;
+    --popover-foreground: 15 23 42;
+    --primary: 15 23 42;
     --primary-foreground: 255 255 255;
-    --secondary: 245 245 245;
-    --secondary-foreground: 0 0 0;
-    --muted: 245 245 245;
-    --muted-foreground: 115 115 115;
-    --accent: 240 240 240;
-    --accent-foreground: 0 0 0;
-    --destructive: 0 0 0;
+    --secondary: 248 250 252;
+    --secondary-foreground: 15 23 42;
+    --muted: 248 250 252;
+    --muted-foreground: 100 116 139;
+    --accent: 241 245 249;
+    --accent-foreground: 15 23 42;
+    --destructive: 239 68 68;
     --destructive-foreground: 255 255 255;
-    --border: 229 229 229;
+    --border: 226 232 240;
     --input: 255 255 255;
-    --ring: 0 0 0;
+    --ring: 15 23 42;
     --radius: 0.5rem;
 
     /* Sidebar specific colors */
-    --sidebar-background: 250 250 250;
-    --sidebar-foreground: 0 0 0;
-    --sidebar-primary: 0 0 0;
+    --sidebar-background: 255 255 255;
+    --sidebar-foreground: 15 23 42;
+    --sidebar-primary: 15 23 42;
     --sidebar-primary-foreground: 255 255 255;
-    --sidebar-accent: 245 245 245;
-    --sidebar-accent-foreground: 0 0 0;
-    --sidebar-border: 229 229 229;
-    --sidebar-ring: 0 0 0;
+    --sidebar-accent: 248 250 252;
+    --sidebar-accent-foreground: 15 23 42;
+    --sidebar-border: 226 232 240;
+    --sidebar-ring: 15 23 42;
   }
 
   .dark {
-    /* Dark mode - inverted black and white */
-    --background: 0 0 0;
-    --foreground: 255 255 255;
-    --card: 10 10 10;
-    --card-foreground: 255 255 255;
-    --popover: 10 10 10;
-    --popover-foreground: 255 255 255;
-    --primary: 255 255 255;
-    --primary-foreground: 0 0 0;
-    --secondary: 25 25 25;
-    --secondary-foreground: 255 255 255;
-    --muted: 25 25 25;
-    --muted-foreground: 140 140 140;
-    --accent: 25 25 25;
-    --accent-foreground: 255 255 255;
-    --destructive: 255 255 255;
-    --destructive-foreground: 0 0 0;
-    --border: 38 38 38;
-    --input: 25 25 25;
-    --ring: 255 255 255;
+    /* Dark mode - clean dark theme */
+    --background: 2 6 23;
+    --foreground: 248 250 252;
+    --card: 15 23 42;
+    --card-foreground: 248 250 252;
+    --popover: 15 23 42;
+    --popover-foreground: 248 250 252;
+    --primary: 248 250 252;
+    --primary-foreground: 15 23 42;
+    --secondary: 30 41 59;
+    --secondary-foreground: 248 250 252;
+    --muted: 30 41 59;
+    --muted-foreground: 148 163 184;
+    --accent: 30 41 59;
+    --accent-foreground: 248 250 252;
+    --destructive: 239 68 68;
+    --destructive-foreground: 248 250 252;
+    --border: 51 65 85;
+    --input: 30 41 59;
+    --ring: 248 250 252;
 
     /* Dark sidebar colors */
-    --sidebar-background: 10 10 10;
-    --sidebar-foreground: 255 255 255;
-    --sidebar-primary: 255 255 255;
-    --sidebar-primary-foreground: 0 0 0;
-    --sidebar-accent: 25 25 25;
-    --sidebar-accent-foreground: 255 255 255;
-    --sidebar-border: 38 38 38;
-    --sidebar-ring: 255 255 255;
+    --sidebar-background: 15 23 42;
+    --sidebar-foreground: 248 250 252;
+    --sidebar-primary: 248 250 252;
+    --sidebar-primary-foreground: 15 23 42;
+    --sidebar-accent: 30 41 59;
+    --sidebar-accent-foreground: 248 250 252;
+    --sidebar-border: 51 65 85;
+    --sidebar-ring: 248 250 252;
   }
 }
 
@@ -118,17 +118,25 @@
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
+.shadow-xl {
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
+}
+
 /* Dark mode shadows */
 .dark .shadow-sm {
-  box-shadow: 0 1px 2px 0 rgb(255 255 255 / 0.05);
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.3);
 }
 
 .dark .shadow {
-  box-shadow: 0 1px 3px 0 rgb(255 255 255 / 0.1), 0 1px 2px -1px rgb(255 255 255 / 0.1);
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
 }
 
 .dark .shadow-lg {
-  box-shadow: 0 10px 15px -3px rgb(255 255 255 / 0.1), 0 4px 6px -4px rgb(255 255 255 / 0.1);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+}
+
+.dark .shadow-xl {
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 10px 10px -5px rgb(0 0 0 / 0.2);
 }
 
 /* Professional animations */
@@ -145,6 +153,19 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Glass morphism effects */
+.glass {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Drag and drop styles */
