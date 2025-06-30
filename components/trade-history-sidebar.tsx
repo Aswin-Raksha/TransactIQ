@@ -63,7 +63,6 @@ export function TradeHistorySidebar({ isOpen, onClose, onSelectTradeCall }: Trad
   const filterTradeCalls = () => {
     let filtered = tradeCalls
 
-    // Filter by search query
     if (searchQuery) {
       filtered = filtered.filter(
         (call) =>
@@ -72,7 +71,6 @@ export function TradeHistorySidebar({ isOpen, onClose, onSelectTradeCall }: Trad
       )
     }
 
-    // Filter by transaction type
     if (selectedFilter !== "all") {
       filtered = filtered.filter((call) => call.transType.toLowerCase() === selectedFilter)
     }
@@ -125,12 +123,12 @@ export function TradeHistorySidebar({ isOpen, onClose, onSelectTradeCall }: Trad
   return (
     <>
       {/* Overlay */}
-      {isOpen && <div className="fixed inset-0 bg-black/50 z-40 lg:hidden" onClick={onClose} />}
+      {isOpen && <div className="fixed inset-0 bg-black/80 z-40 lg:hidden" onClick={onClose} />}
 
       {/* Sidebar */}
       <div
         className={cn(
-          "fixed left-0 top-0 h-full w-80 bg-sidebar-background border-r border-sidebar-border z-50 transform transition-transform duration-300 ease-in-out",
+          "fixed left-0 top-0 h-full w-80 bg-sidebar border-r border-sidebar-border z-50 transform transition-transform duration-300 ease-in-out",
           isOpen ? "translate-x-0" : "-translate-x-full",
           "lg:relative lg:translate-x-0 lg:z-auto",
         )}
@@ -139,7 +137,7 @@ export function TradeHistorySidebar({ isOpen, onClose, onSelectTradeCall }: Trad
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b border-sidebar-border">
             <h2 className="text-lg font-semibold text-sidebar-foreground">Trade History</h2>
-            <Button variant="ghost" size="sm" onClick={onClose} className="lg:hidden">
+            <Button variant="ghost" size="sm" onClick={onClose} className="lg:hidden h-8 w-8 p-0">
               <X className="h-4 w-4" />
             </Button>
           </div>
@@ -152,7 +150,7 @@ export function TradeHistorySidebar({ isOpen, onClose, onSelectTradeCall }: Trad
                 placeholder="Search trade calls..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-9 bg-sidebar-accent border-sidebar-border"
+                className="pl-9 bg-sidebar-accent border-sidebar-border text-sidebar-foreground placeholder:text-muted-foreground"
               />
             </div>
 
@@ -161,7 +159,7 @@ export function TradeHistorySidebar({ isOpen, onClose, onSelectTradeCall }: Trad
                 variant={selectedFilter === "all" ? "default" : "outline"}
                 size="sm"
                 onClick={() => setSelectedFilter("all")}
-                className="flex-1"
+                className="flex-1 h-8"
               >
                 All
               </Button>
@@ -169,7 +167,7 @@ export function TradeHistorySidebar({ isOpen, onClose, onSelectTradeCall }: Trad
                 variant={selectedFilter === "buy" ? "default" : "outline"}
                 size="sm"
                 onClick={() => setSelectedFilter("buy")}
-                className="flex-1"
+                className="flex-1 h-8"
               >
                 <TrendingUp className="h-3 w-3 mr-1" />
                 Buy
@@ -178,7 +176,7 @@ export function TradeHistorySidebar({ isOpen, onClose, onSelectTradeCall }: Trad
                 variant={selectedFilter === "sell" ? "default" : "outline"}
                 size="sm"
                 onClick={() => setSelectedFilter("sell")}
-                className="flex-1"
+                className="flex-1 h-8"
               >
                 <TrendingDown className="h-3 w-3 mr-1" />
                 Sell
@@ -221,7 +219,7 @@ export function TradeHistorySidebar({ isOpen, onClose, onSelectTradeCall }: Trad
                           <button
                             key={call._id}
                             onClick={() => onSelectTradeCall(call)}
-                            className="w-full p-3 text-left rounded-lg hover:bg-sidebar-accent transition-colors group"
+                            className="w-full p-3 text-left rounded-lg hover:bg-sidebar-accent transition-colors group border border-transparent hover:border-sidebar-border"
                           >
                             <div className="flex items-center justify-between mb-2">
                               <Badge

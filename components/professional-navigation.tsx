@@ -22,57 +22,86 @@ export function ProfessionalNavigation({ onToggleSidebar }: ProfessionalNavigati
   }
 
   return (
-    <nav className="bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60 border-b border-border sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Left side */}
-          <div className="flex items-center space-x-4">
-            {onToggleSidebar && (
-              <Button variant="ghost" size="sm" onClick={onToggleSidebar} className="lg:hidden hover:bg-accent">
-                <Menu className="h-5 w-5" />
-              </Button>
-            )}
+    <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-14 items-center">
+        <div className="mr-4 hidden md:flex">
+          <Link href="/dashboard" className="mr-6 flex items-center space-x-2">
+            <Brain className="h-6 w-6 text-foreground" />
+            <span className="hidden font-bold sm:inline-block text-foreground">TransactIQ</span>
+          </Link>
+          <div className="hidden md:flex items-center space-x-6 ml-6">
+            <Link
+              href="/dashboard"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Dashboard
+            </Link>
+            <Link
+              href="/process"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Process
+            </Link>
+            <Link
+              href="/analytics"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Analytics
+            </Link>
+            <Link
+              href="/upload"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Upload
+            </Link>
+          </div>
+        </div>
 
-            <Link href="/dashboard" className="flex items-center space-x-3">
-              <div className="relative">
-                <Brain className="h-8 w-8 text-primary" />
-              </div>
-              <span className="text-xl font-semibold text-foreground">TransactIQ</span>
+        {onToggleSidebar && (
+          <Button
+            variant="ghost"
+            className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
+            onClick={onToggleSidebar}
+          >
+            <Menu className="h-5 w-5" />
+            <span className="sr-only">Toggle Menu</span>
+          </Button>
+        )}
+
+        <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
+          <div className="w-full flex-1 md:w-auto md:flex-none">
+            <Link href="/dashboard" className="mr-6 flex items-center space-x-2 md:hidden">
+              <Brain className="h-6 w-6 text-foreground" />
+              <span className="font-bold text-foreground">TransactIQ</span>
             </Link>
           </div>
 
-          {/* Right side */}
-          <div className="flex items-center space-x-3">
-            {/* Theme toggle */}
-            <Button variant="ghost" size="sm" onClick={toggleTheme} className="relative hover:bg-accent">
-              <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <nav className="flex items-center space-x-1">
+            <Button variant="ghost" size="sm" onClick={toggleTheme} className="h-8 w-8 px-0">
+              <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
               <span className="sr-only">Toggle theme</span>
             </Button>
 
             {user && (
               <>
-                {/* User info */}
-                <div className="hidden sm:flex items-center space-x-2 px-3 py-1.5 rounded-md bg-muted/50">
-                  <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
-                    <User className="h-3 w-3 text-primary" />
-                  </div>
-                  <span className="text-sm font-medium text-foreground">{user.name}</span>
+                <div className="hidden sm:flex items-center space-x-2 px-3 py-1.5 rounded-md bg-muted text-sm">
+                  <User className="h-4 w-4 text-muted-foreground" />
+                  <span className="font-medium">{user.name}</span>
                 </div>
 
-                {/* Logout button */}
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={handleLogout}
-                  className="text-muted-foreground hover:text-foreground hover:bg-accent"
+                  className="h-8 text-muted-foreground hover:text-foreground"
                 >
                   <LogOut className="h-4 w-4 mr-2" />
                   <span className="hidden sm:inline">Logout</span>
                 </Button>
               </>
             )}
-          </div>
+          </nav>
         </div>
       </div>
     </nav>

@@ -26,6 +26,7 @@ import {
   BarChart3,
   Zap,
   Clock,
+  Brain,
 } from "lucide-react"
 
 export default function DashboardPage() {
@@ -117,16 +118,16 @@ export default function DashboardPage() {
           onSelectTradeCall={handleSelectTradeCall}
         />
 
-        <main className="flex-1 min-h-[calc(100vh-4rem)]">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <main className="flex-1 min-h-[calc(100vh-3.5rem)]">
+          <div className="container max-w-7xl mx-auto px-4 py-8">
             {/* Header */}
             <div className="text-center mb-8">
               <div className="flex items-center justify-center mb-4">
                 <div className="relative">
-                  <Sparkles className="h-12 w-12 text-primary" />
+                  <Brain className="h-12 w-12 text-primary" />
                 </div>
               </div>
-              <h1 className="text-4xl font-bold text-foreground mb-4">AI Trade Call Parser</h1>
+              <h1 className="text-4xl font-bold tracking-tight text-foreground mb-4">AI Trade Call Parser</h1>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 Welcome back, <span className="font-semibold text-foreground">{user.name}</span>! Transform natural
                 language trade calls into structured, validated data with AI precision.
@@ -137,7 +138,7 @@ export default function DashboardPage() {
               {/* Left Column - Form */}
               <div className="lg:col-span-2 space-y-6">
                 {/* Main Form */}
-                <Card className="card-shadow">
+                <Card className="shadow-sm border-border">
                   <CardHeader className="pb-4">
                     <div className="flex items-center justify-between">
                       <div>
@@ -166,7 +167,7 @@ export default function DashboardPage() {
                           value={tradeCall}
                           onChange={(e) => setTradeCall(e.target.value)}
                           placeholder="Example: Buy NIFTY 23000 CE monthly @160 target 200/20 SL 120/110"
-                          className="min-h-[120px] resize-none focus-ring"
+                          className="min-h-[120px] resize-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                           disabled={loading}
                         />
                       </div>
@@ -196,7 +197,7 @@ export default function DashboardPage() {
 
                 {/* Results */}
                 {result && (
-                  <div className="space-y-6">
+                  <div className="space-y-6 animate-in">
                     {/* Success Alert */}
                     <Alert className="border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-950/50">
                       <CheckCircle className="h-4 w-4 text-green-600 dark:text-green-400" />
@@ -207,7 +208,7 @@ export default function DashboardPage() {
                     </Alert>
 
                     {/* Parsed JSON Output */}
-                    <Card className="card-shadow">
+                    <Card className="shadow-sm border-border">
                       <CardHeader>
                         <CardTitle className="flex items-center text-foreground">
                           <Target className="mr-2 h-5 w-5 text-primary" />
@@ -215,14 +216,14 @@ export default function DashboardPage() {
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-sm border text-foreground">
+                        <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-sm border text-foreground font-mono">
                           {JSON.stringify(result.data, null, 2)}
                         </pre>
                       </CardContent>
                     </Card>
 
                     {/* Field Breakdown */}
-                    <Card className="card-shadow">
+                    <Card className="shadow-sm border-border">
                       <CardHeader>
                         <CardTitle className="flex items-center text-foreground">
                           <Shield className="mr-2 h-5 w-5 text-primary" />
@@ -311,7 +312,7 @@ export default function DashboardPage() {
               {/* Right Column - Examples & Stats */}
               <div className="space-y-6">
                 {/* Examples */}
-                <Card className="card-shadow">
+                <Card className="shadow-sm border-border">
                   <CardHeader>
                     <CardTitle className="flex items-center text-lg text-foreground">
                       <Sparkles className="mr-2 h-5 w-5 text-primary" />
@@ -362,8 +363,8 @@ export default function DashboardPage() {
                   </CardContent>
                 </Card>
 
-                {/* Quick Stats */}
-                <Card className="card-shadow">
+                {/* Performance Metrics */}
+                <Card className="shadow-sm border-border">
                   <CardHeader>
                     <CardTitle className="text-lg text-foreground flex items-center">
                       <BarChart3 className="mr-2 h-5 w-5 text-primary" />
