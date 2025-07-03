@@ -94,9 +94,9 @@ STRICT Prohibited Behaviors:
 User Input: "${tradeCall}"
 `
 
-    // Call OpenAI GPT-4o-mini
+    // Call OpenAI GPT-3.5-turbo (free model)
     const response = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+      model: "gpt-3.5-turbo",
       messages: [
         {
           role: "system",

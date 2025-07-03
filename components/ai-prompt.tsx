@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { ArrowRight, Bot, Check, ChevronDown, Paperclip } from "lucide-react"
 import { useState } from "react"
 import { Textarea } from "@/components/ui/textarea"
@@ -12,14 +11,14 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { motion, AnimatePresence } from "motion/react"
 
 const OPENAI_SVG = (
-  <div>
+  <div className="w-4 h-4">
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="256"
-      height="260"
+      width="16"
+      height="16"
       preserveAspectRatio="xMidYMid"
       viewBox="0 0 256 260"
-      aria-label="o3-mini icon"
+      aria-label="OpenAI icon"
       className="dark:hidden block"
     >
       <title>OpenAI Icon Light</title>
@@ -27,11 +26,11 @@ const OPENAI_SVG = (
     </svg>
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="256"
-      height="260"
+      width="16"
+      height="16"
       preserveAspectRatio="xMidYMid"
       viewBox="0 0 256 260"
-      aria-label="o3-mini icon"
+      aria-label="OpenAI icon"
       className="hidden dark:block"
     >
       <title>OpenAI Icon Dark</title>
@@ -43,92 +42,91 @@ const OPENAI_SVG = (
   </div>
 )
 
-export default function AI_Prompt() {
+interface AIPromptProps {
+  onSubmit?: (message: string, model: string) => void
+  className?: string
+}
+
+export default function AIPrompt({ onSubmit, className }: AIPromptProps) {
   const [value, setValue] = useState("")
   const { textareaRef, adjustHeight } = useAutoResizeTextarea({
     minHeight: 72,
     maxHeight: 300,
   })
-  const [selectedModel, setSelectedModel] = useState("GPT-4-1 Mini")
+  const [selectedModel, setSelectedModel] = useState("GPT-4o Mini")
 
-  const AI_MODELS = ["o3-mini", "Gemini 2.5 Flash", "Claude 3.5 Sonnet", "GPT-4-1 Mini", "GPT-4-1"]
+  const AI_MODELS = ["GPT-4o Mini", "GPT-4o", "Claude 3.5 Sonnet", "Gemini 2.0 Flash"]
 
   const MODEL_ICONS: Record<string, React.ReactNode> = {
-    "o3-mini": OPENAI_SVG,
-    "Gemini 2.5 Flash": (
-      <svg
-        height="1em"
-        style={{ flex: "none", lineHeight: "1" }}
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <title>Gemini</title>
-        <defs>
-          <linearGradient id="lobe-icons-gemini-fill" x1="0%" x2="68.73%" y1="100%" y2="30.395%">
-            <stop offset="0%" stopColor="#1C7DFF" />
-            <stop offset="52.021%" stopColor="#1C69FF" />
-            <stop offset="100%" stopColor="#F0DCD6" />
-          </linearGradient>
-        </defs>
-        <path
-          d="M12 24A14.304 14.304 0 000 12 14.304 14.304 0 0012 0a14.305 14.305 0 0012 12 14.305 14.305 0 00-12 12"
-          fill="url(#lobe-icons-gemini-fill)"
-          fillRule="nonzero"
-        />
-      </svg>
-    ),
+    "GPT-4o Mini": OPENAI_SVG,
+    "GPT-4o": OPENAI_SVG,
     "Claude 3.5 Sonnet": (
-      <div>
+      <div className="w-4 h-4">
         <svg
-          fill="#000"
+          fill="currentColor"
           fillRule="evenodd"
-          style={{ flex: "none", lineHeight: "1" }}
           viewBox="0 0 24 24"
-          width="1em"
+          width="16"
+          height="16"
           xmlns="http://www.w3.org/2000/svg"
-          className="dark:hidden block"
+          className="text-slate-800 dark:text-white"
         >
-          <title>Anthropic Icon Light</title>
-          <path d="M13.827 3.52h3.603L24 20h-3.603l-6.57-16.48zm-7.258 0h3.767L16.906 20h-3.674l-1.343-3.461H5.017l-1.344 3.46H0L6.57 3.522zm4.132 9.959L8.453 7.687 6.205 13.48H10.7z" />
-        </svg>
-        <svg
-          fill="#ffff"
-          fillRule="evenodd"
-          style={{ flex: "none", lineHeight: "1" }}
-          viewBox="0 0 24 24"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
-          className="hidden dark:block"
-        >
-          <title>Anthropic Icon Dark</title>
+          <title>Anthropic</title>
           <path d="M13.827 3.52h3.603L24 20h-3.603l-6.57-16.48zm-7.258 0h3.767L16.906 20h-3.674l-1.343-3.461H5.017l-1.344 3.46H0L6.57 3.522zm4.132 9.959L8.453 7.687 6.205 13.48H10.7z" />
         </svg>
       </div>
     ),
-    "GPT-4-1 Mini": OPENAI_SVG,
-    "GPT-4-1": OPENAI_SVG,
+    "Gemini 2.0 Flash": (
+      <div className="w-4 h-4">
+        <svg height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+          <title>Gemini</title>
+          <defs>
+            <linearGradient id="lobe-icons-gemini-fill" x1="0%" x2="68.73%" y1="100%" y2="30.395%">
+              <stop offset="0%" stopColor="#1C7DFF" />
+              <stop offset="52.021%" stopColor="#1C69FF" />
+              <stop offset="100%" stopColor="#F0DCD6" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M12 24A14.304 14.304 0 000 12 14.304 14.304 0 0012 0a14.305 14.305 0 0112 12 14.305 14.305 0 00-12 12"
+            fill="url(#lobe-icons-gemini-fill)"
+            fillRule="nonzero"
+          />
+        </svg>
+      </div>
+    ),
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault()
+      if (value.trim() && onSubmit) {
+        onSubmit(value.trim(), selectedModel)
+      }
+      setValue("")
+      adjustHeight(true)
+    }
+  }
+
+  const handleSubmit = () => {
+    if (value.trim() && onSubmit) {
+      onSubmit(value.trim(), selectedModel)
       setValue("")
       adjustHeight(true)
     }
   }
 
   return (
-    <div className="w-4/6 py-4">
-      <div className="bg-black/5 dark:bg-white/5 rounded-2xl p-1.5">
+    <div className={cn("w-full max-w-4xl mx-auto py-4", className)}>
+      <div className="glass rounded-2xl p-1.5 shadow-xl border border-white/20">
         <div className="relative">
           <div className="relative flex flex-col">
             <div className="overflow-y-auto" style={{ maxHeight: "400px" }}>
               <Textarea
-                id="ai-input-15"
                 value={value}
-                placeholder={"What can I do for you?"}
+                placeholder="What can I help you analyze today?"
                 className={cn(
-                  "w-full rounded-xl rounded-b-none px-4 py-3 bg-black/5 dark:bg-white/5 border-none dark:text-white placeholder:text-black/70 dark:placeholder:text-white/70 resize-none focus-visible:ring-0 focus-visible:ring-offset-0",
+                  "w-full rounded-xl rounded-b-none px-4 py-3 bg-white/70 backdrop-blur-sm border-none text-slate-800 placeholder:text-slate-500 resize-none focus-visible:ring-0 focus-visible:ring-offset-0",
                   "min-h-[72px]",
                 )}
                 ref={textareaRef}
@@ -140,14 +138,14 @@ export default function AI_Prompt() {
               />
             </div>
 
-            <div className="h-14 bg-black/5 dark:bg-white/5 rounded-b-xl flex items-center">
+            <div className="h-14 bg-white/70 backdrop-blur-sm rounded-b-xl flex items-center">
               <div className="absolute left-3 right-3 bottom-3 flex items-center justify-between w-[calc(100%-24px)]">
                 <div className="flex items-center gap-2">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button
                         variant="ghost"
-                        className="flex items-center gap-1 h-8 pl-1 pr-2 text-xs rounded-md dark:text-white hover:bg-black/10 dark:hover:bg-white/10 focus-visible:ring-1 focus-visible:ring-offset-0 focus-visible:ring-blue-500"
+                        className="flex items-center gap-1 h-8 pl-1 pr-2 text-xs rounded-md text-slate-700 hover:bg-slate-100 focus-visible:ring-1 focus-visible:ring-offset-0 focus-visible:ring-slate-400"
                       >
                         <AnimatePresence mode="wait">
                           <motion.div
@@ -176,35 +174,28 @@ export default function AI_Prompt() {
                         </AnimatePresence>
                       </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent
-                      className={cn(
-                        "min-w-[10rem]",
-                        "border-black/10 dark:border-white/10",
-                        "bg-gradient-to-b from-white via-white to-neutral-100 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-800",
-                      )}
-                    >
+                    <DropdownMenuContent className={cn("min-w-[10rem]", "border-slate-200", "glass shadow-xl")}>
                       {AI_MODELS.map((model) => (
                         <DropdownMenuItem
                           key={model}
                           onSelect={() => setSelectedModel(model)}
-                          className="flex items-center justify-between gap-2"
+                          className="flex items-center justify-between gap-2 text-slate-700 hover:bg-slate-100"
                         >
                           <div className="flex items-center gap-2">
-                            {MODEL_ICONS[model] || <Bot className="w-4 h-4 opacity-50" />}{" "}
-                            {/* Use mapped SVG or fallback */}
+                            {MODEL_ICONS[model] || <Bot className="w-4 h-4 opacity-50" />}
                             <span>{model}</span>
                           </div>
-                          {selectedModel === model && <Check className="w-4 h-4 text-blue-500" />}
+                          {selectedModel === model && <Check className="w-4 h-4 text-slate-600" />}
                         </DropdownMenuItem>
                       ))}
                     </DropdownMenuContent>
                   </DropdownMenu>
-                  <div className="h-4 w-px bg-black/10 dark:bg-white/10 mx-0.5" />
+                  <div className="h-4 w-px bg-slate-200 mx-0.5" />
                   <label
                     className={cn(
-                      "rounded-lg p-2 bg-black/5 dark:bg-white/5 cursor-pointer",
-                      "hover:bg-black/10 dark:hover:bg-white/10 focus-visible:ring-1 focus-visible:ring-offset-0 focus-visible:ring-blue-500",
-                      "text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white",
+                      "rounded-lg p-2 bg-white/50 cursor-pointer",
+                      "hover:bg-slate-100 focus-visible:ring-1 focus-visible:ring-offset-0 focus-visible:ring-slate-400",
+                      "text-slate-500 hover:text-slate-700",
                     )}
                     aria-label="Attach file"
                   >
@@ -214,16 +205,19 @@ export default function AI_Prompt() {
                 </div>
                 <button
                   type="button"
+                  onClick={handleSubmit}
                   className={cn(
-                    "rounded-lg p-2 bg-black/5 dark:bg-white/5",
-                    "hover:bg-black/10 dark:hover:bg-white/10 focus-visible:ring-1 focus-visible:ring-offset-0 focus-visible:ring-blue-500",
+                    "rounded-lg p-2 bg-white/50",
+                    "hover:bg-slate-100 focus-visible:ring-1 focus-visible:ring-offset-0 focus-visible:ring-slate-400",
+                    "transition-all duration-200",
+                    value.trim() ? "text-slate-700 hover:bg-slate-800 hover:text-white" : "text-slate-400",
                   )}
                   aria-label="Send message"
                   disabled={!value.trim()}
                 >
                   <ArrowRight
                     className={cn(
-                      "w-4 h-4 dark:text-white transition-opacity duration-200",
+                      "w-4 h-4 transition-opacity duration-200",
                       value.trim() ? "opacity-100" : "opacity-30",
                     )}
                   />

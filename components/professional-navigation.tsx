@@ -25,11 +25,14 @@ export function ProfessionalNavigation({ onToggleSidebar }: ProfessionalNavigati
     <nav className="sticky top-0 z-50 w-full border-b border-slate-200 glass shadow-sm">
       <div className="container flex h-14 items-center">
         <div className="mr-4 hidden md:flex">
-          <Link href="/dashboard" className="mr-6 flex items-center space-x-2">
+          <Link href="/home" className="mr-6 flex items-center space-x-2">
             <Brain className="h-6 w-6 text-slate-800" />
             <span className="hidden font-bold sm:inline-block text-slate-800">TransactIQ</span>
           </Link>
           <div className="hidden md:flex items-center space-x-6 ml-6">
+            <Link href="/home" className="text-sm font-medium text-slate-600 hover:text-slate-800 transition-colors">
+              Home
+            </Link>
             <Link
               href="/dashboard"
               className="text-sm font-medium text-slate-600 hover:text-slate-800 transition-colors"
@@ -64,7 +67,7 @@ export function ProfessionalNavigation({ onToggleSidebar }: ProfessionalNavigati
 
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
           <div className="w-full flex-1 md:w-auto md:flex-none">
-            <Link href="/dashboard" className="mr-6 flex items-center space-x-2 md:hidden">
+            <Link href="/home" className="mr-6 flex items-center space-x-2 md:hidden">
               <Brain className="h-6 w-6 text-slate-800" />
               <span className="font-bold text-slate-800">TransactIQ</span>
             </Link>
